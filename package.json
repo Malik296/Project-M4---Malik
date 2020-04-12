@@ -1,0 +1,29 @@
+{
+  "name": "project-m4---malik",
+  "version": "1.0.0",
+  "description": "Converter",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "webpack",
+    "build:prod": "webpack --config webpack.prod.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Malik296/Project-M4---Malik.git"
+  },
+  "author": "Malik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Malik296/Project-M4---Malik/issues"
+  },
+  "homepage": "https://github.com/Malik296/Project-M4---Malik#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}

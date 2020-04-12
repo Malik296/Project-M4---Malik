@@ -143,7 +143,7 @@ function checkCorrectImput(str) {
     let dot = true;
 
     for (let i = 0; i < str.length; i++) {
-        if (i == 0 && str[i] == '.') {
+        if (i == 0 && (str[i] == '.' || str[i] == ',')) {
             finalAmount += ''
         } else if ((str[i] == '.' || str[i] == ',') && dot) {
             finalAmount += str[i];

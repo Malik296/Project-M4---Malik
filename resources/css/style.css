@@ -1,0 +1,264 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    min-width: 970px;
+    /* margin: 0; */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background: #F5F5F6;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+}
+
+.nav-div {
+    display: inline-block;
+    width: 700px;
+}
+
+.nav-div ul {
+    min-width: 600px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.nav-div li {
+    flex-grow: 1;
+}
+
+.nav-div ul li:hover {
+    background: rgb(211, 211, 212);
+}
+
+.nav-div li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    font-style: medium;
+    font-weight: bold;
+    color: #959BA4;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.active {
+    color: #000000;
+}
+
+.button-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 33px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-style: normal;
+    font-size: 11px;
+}
+
+/*-----------------------------------------------*/
+
+main {
+    width: 750px;
+    margin: 0 auto;
+}
+
+.main-widt-div {
+    width: 640px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-top: 60px;
+    margin-bottom: 33px;
+    font-size: 33px;
+}
+
+.type-container-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.spn-color {
+    height: 28px;
+    font-size: 12px;
+    color: #9F9F9F;
+}
+
+.list-type-div ul {
+    display: flex;
+    width: 259px;
+    height: 30px;
+    border: 1px solid #E5E5E5;
+    list-style-type: none;
+    padding-left: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    color: #9F9F9F;
+    margin: 5.5px 0;
+}
+
+.list-type-div li {
+    border-right: 1px solid #E5E5E5;
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+/* .list-type-div li:hover {
+    background-color: rgb(219, 233, 249);
+    color: black;
+} */
+
+.active-list {
+    background: #833AE0;
+    color: whitesmoke;
+}
+
+.list-type-div li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-type-div li:last-child {
+    border-right: none;
+    padding-right: 20px;
+    position: relative;
+}
+
+/*-----------------------------------------------*/
+
+.input-container-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-container-div img:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.input-div {
+    width: 259px;
+    height: 102px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    padding: 11px 14px 5px 14px;
+}
+
+.input-div input {
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 20px;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.input-div p {
+    font-size: 12px;
+    color: #C6C6C6;
+    margin: 0;
+}
+
+#load-div {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.44);
+    width: 100%;
+    height: 100%;
+}
+
+#load-div .load {
+    display: flex;
+    width: 145px;
+    height: 54px;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+/*--------------------------------------------------------*/
+
+.valyuta-list-container {
+    display: none;
+    position: absolute;
+    width: 750px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 8px 40px 0 rgba(0, 0, 0, .2);
+    background: white;
+    padding: 12px 21px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.hidden {
+    display: flex;
+}
+
+.column-div {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 33%;
+    justify-content: center;
+}
+
+.valyuta-type-div {
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+    padding: 5px 6px;
+    cursor: pointer;
+}
+
+.valyuta-type-div:hover {
+    background-color: rgb(219, 233, 249);
+}
+
+.valyuta-type-div span {
+    font-size: 15px;
+}
+
+.valyuta-type-div .valyuta-type {
+    font-weight: bold;
+}
+
+.select-span {
+    position: absolute;
+    background: rgb(90, 118, 148);
+    color: white;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    text-align: center;
+}
+
+.select-span:hover {
+    color: black;
+}
+
+.arrow-active {
+    transform: rotate(180deg);
+}

@@ -105,7 +105,7 @@ function setDataToInput(input, correctInput, getRate) {
     if (correctInput == 0) {
         input.value = '';
     } else {
-        input.value = (correctInput * getRate[Object.keys(getRate)[0]]);
+        input.value = (correctInput * getRate[Object.keys(getRate)[0]]).toFixed(2);
     }
 }
 
@@ -121,7 +121,7 @@ function firstInput(e) {
         setDataToInput(inputList[1], correctInput, getRate);
     }
 
-    setTimeout(setCorretct, 100);
+    setTimeout(setCorretct, 70);
 }
 
 function secondInput(e) {
@@ -135,7 +135,7 @@ function secondInput(e) {
 
         setDataToInput(inputList[0], correctInput, getRate);
     }
-    setTimeout(setCorretct, 100);
+    setTimeout(setCorretct, 70);
 }
 
 function checkCorrectImput(str) {

@@ -1,8 +1,9 @@
 html, body {
     font-family: 'Roboto', sans-serif;
+    width: 100%;
     height: 100%;
     min-width: 970px;
-    /* margin: 0; */
+    margin: 0;
 }
 
 * {
@@ -74,6 +75,7 @@ header {
 
 main {
     width: 750px;
+    height: 400px;
     margin: 0 auto;
 }
 
@@ -261,4 +263,76 @@ h1 {
 
 .arrow-active {
     transform: rotate(180deg);
+}
+
+/*-------------------------------------------------*/
+
+footer {
+    height: 250px;
+    width: 100%;
+    border: 1px solid #E5E5E5;
+}
+
+.footer-top {
+    width: 100%;
+    height: 75px;
+    padding: 0 100px;
+}
+
+.footer-bottom {
+    width: 100%;
+    height: 175px;
+    padding: 25px 100px;
+    background: #F5F5F6;
+}
+
+.footer-bottom hr {
+    height: 0px;
+    border: 1px solid #E5E5E5;
+    margin: 0 auto;
+}
+
+.footer-bottom p {
+    display: inline-block;
+    font-size: 11px;
+    color: #959BA4;
+    margin: 22px 0;
+}
+
+#add-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-top-div {
+    display: flex;
+    height: 50%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-top-div ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding-left: 0;
+    margin-right: 10px;
+    width: 750px;
+}
+
+.footer-top-div a {
+    text-decoration: none;
+    font-size: 11px;
+    color: #833AE0;
+}
+
+.footer-top-div p {
+    font-size: 11px;
+    color: #959BA4;
+}
+
+.footer-top-div h2 {
+    font-weight: bold;
+    font-size: 20px;
 }

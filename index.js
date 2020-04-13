@@ -79,10 +79,10 @@ function updateData(firstUrl, secondUrl) {
     ];
 
     let requests = urls.map(url => fetch(url));
+    document.querySelector('#load-div').style.display = 'flex';
 
     Promise.all(requests)
         .then(responses => {
-            document.querySelector('#load-div').style.display = 'flex';
             Promise.all([responses[0].json(), responses[1].json()])
                 .then(datas => {
                     leftValyutData = datas[0];

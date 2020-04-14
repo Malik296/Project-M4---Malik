@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///C:/Users/phhubuser01/Desktop/Projects/Project%20M4/index.html",
+            "url": "file:///C:/Users/phhubuser01/Desktop/Projects/w6/Clone%20git/Project-M4---Malik/index.html",
             "webRoot": "${workspaceFolder}"
         }
     ]

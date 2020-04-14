@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script src="dist/main.minified.js"></script>
-    <!-- <script src="index.js"></script> -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="resources/css/animate.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
+    <script src="chart-script.js"></script>
+    <!-- <script src="dist/main.minified.js"></script> -->
+    <script src="index.js"></script>
     <title>Document</title>
 </head>
 
@@ -15,6 +19,18 @@
     <div id="load-div">
         <div class="load">
             <h3>Loading</h3>
+        </div>
+    </div>
+    <div class="chart-background-div animated">
+        <div class="container-chart animated">
+            <div id="chart_div"></div>
+            <div class="list-chart-div list-type-div">
+                <ul>
+                    <li>Год</li>
+                    <li>Месяц</li>
+                    <li class="active-list">День</li>
+                </ul>
+            </div>
         </div>
     </div>
     <header>
@@ -50,6 +66,7 @@
                         </ul>
                     </div>
                 </div>
+                <img src="resources/img/chart-logo.svg" alt="char logo">
                 <div>
                     <div><span class="spn-color">Хочу приобрести</span></div>
                     <div class="list-type-div right-list">

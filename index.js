@@ -1,16 +1,22 @@
 window.addEventListener('load', startApplication);
+let firstStart = true;
+
 let inputList;
+let lastTimeClick;
 
 // Хранители обектов выбранных валют
-let leftValyutData;
-let rightValyutData;
+let leftCurencyData;
+let rightCurencyData;
 
 
 let leftList;
 let rightList;
 
+let arrayCurrency = ['RUS', 'USD']
+
 // Старт приложения
 function startApplication() {
+    lastTimeClick = new Date();
     leftList = document.querySelectorAll('.left-list li');
     rightList = document.querySelectorAll('.right-list li');
 
@@ -34,7 +40,7 @@ function startApplication() {
     arrowDownRight.addEventListener('click', openCurrenciesDiv);
 
     // Добавление слушателей для валют с выпадающего списка
-    setListenerForValyutaTypes();
+    setListenerForCurrencyTypes();
 }
 
 function addListenerForList(leftList, rightList) {
@@ -47,32 +53,59 @@ function addListenerForList(leftList, rightList) {
                     elements[i].classList.remove('active-list');
                 }
                 element.classList.add('active-list');
-                getValutasData();
+                getCurrencyesData();
             })
         });
     }
     addListener(leftList);
     addListener(rightList);
 
-    getValutasData();
+    getCurrencyesData();
 }
 //=========================================================================================
 
 // Определения выбранных валют и обновления данных
-function getValutasData() {
+function getCurrencyesData() {
     let leftList = document.querySelectorAll('.left-list li');
     let rightList = document.querySelectorAll('.right-list li');
 
-    let leftValType = findValType(leftList);
-    let rightValType = findValType(rightList);
+    let leftCurType = findCurType(leftList);
+    let rightCurType = findCurType(rightList);
 
-    updateData(leftValType, rightValType);
+    updateData(leftCurType, rightCurType);
 }
 
 /*********************************************************************************** */
 
 // Функция для получения данных с URL
 function updateData(firstUrl, secondUrl) {
+
+    if (arrayCurrency.includes(firstUrl) && arrayCurrency.includes(secondUrl) && !firstStart) {
+        if (firstUrl == arrayCurrency[0]) {
+            leftCurencyData.rates[Object.keys(leftCurencyData.rates)[0]] = 1;
+            rightCurencyData = '';
+            rightCurencyData = leftCurencyData;
+        } else {
+            rightCurencyData.rates[Object.keys(rightCurencyData.rates)[0]] = 1;
+            leftCurencyData = ''
+            leftCurencyData = rightCurencyData;
+        }
+        // leftCurencyData = addDefaultValue(firstUrl);
+        // rightCurencyData = addDefaultValue(firstUrl);
+
+        // console.log(le)
+
+        chanceBottomInfo(inputList[0]);
+        chanceBottomInfo(inputList[1]);
+        setDataToInput(inputList[1], inputList[0].value, leftCurencyData.rates);
+        arrayCurrency = [];
+        arrayCurrency = [firstUrl, secondUrl];
+
+        return;
+    }
+    firstStart = false;
+    arrayCurrency = [firstUrl, secondUrl];
+
     let urls = [
         `https://api.ratesapi.io/api/latest?base=${firstUrl}&symbols=${secondUrl}`,
         `https://api.ratesapi.io/api/latest?base=${secondUrl}&symbols=${firstUrl}`
@@ -85,13 +118,13 @@ function updateData(firstUrl, secondUrl) {
         .then(responses => {
             Promise.all([responses[0].json(), responses[1].json()])
                 .then(datas => {
-                    leftValyutData = datas[0];
-                    rightValyutData = datas[1];
+                    leftCurencyData = datas[0];
+                    rightCurencyData = datas[1];
 
                     chanceBottomInfo(inputList[0]);
                     chanceBottomInfo(inputList[1]);
 
-                    setDataToInput(inputList[1], inputList[0].value, leftValyutData.rates);
+                    setDataToInput(inputList[1], inputList[0].value, leftCurencyData.rates);
                 });
         })
         .catch(() => alert('Что-то пошло не так'))
@@ -100,7 +133,7 @@ function updateData(firstUrl, secondUrl) {
 
 /*********************************************************************************** */
 // Функция для определеия выбранной валюты из списка
-function findValType(listLi) {
+function findCurType(listLi) {
     let vlt = '';
 
     listLi.forEach((element) => {
@@ -125,12 +158,13 @@ function setDataToInput(input, correctInput, getRate) {
 
 // Вызов первого инпута
 function firstInput(e) {
+    checkLastTimeClick();
     let element = e.target;
     let str = element.value;
 
     let correctInput = checkCorrectImput(str);
     let setCorretct = () => {
-        let getRate = leftValyutData.rates;
+        let getRate = leftCurencyData.rates;
 
         e.target.value = correctInput;
         setDataToInput(inputList[1], correctInput, getRate);
@@ -141,17 +175,29 @@ function firstInput(e) {
 
 // Вызов второго инпута
 function secondInput(e) {
+    checkLastTimeClick();
     let element = e.target;
     let str = element.value;
 
     let correctInput = checkCorrectImput(str);
     let setCorretct = () => {
         e.target.value = correctInput;
-        let getRate = rightValyutData.rates;
+        let getRate = rightCurencyData.rates;
 
         setDataToInput(inputList[0], correctInput, getRate);
     }
     setTimeout(setCorretct, 70);
+}
+
+// Функция проверки активности пользователя
+function checkLastTimeClick() {
+    let newClick = new Date();
+    let rsult = (newClick - lastTimeClick) / 1000;
+    console.log(rsult);
+    if ((rsult) > 30) {
+        getCurrencyesData();
+        lastTimeClick = new Date;
+    }
 }
 
 
@@ -198,12 +244,12 @@ function chancePosition() {
     leftList[4].children[0].innerText = rightList[4].children[0].innerText;
     rightList[4].children[0].innerText = val;
 
-    let copyData = { ...leftValyutData };
-    leftValyutData = '';
-    leftValyutData = { ...rightValyutData };
-    rightValyutData = '';
-    rightValyutData = copyData;
-    setDataToInput(inputList[1], inputList[0].value, leftValyutData.rates);
+    let copyData = { ...leftCurencyData };
+    leftCurencyData = '';
+    leftCurencyData = { ...rightCurencyData };
+    rightCurencyData = '';
+    rightCurencyData = copyData;
+    setDataToInput(inputList[1], inputList[0].value, leftCurencyData.rates);
 
     chanceBottomInfo(inputList[0]);
     chanceBottomInfo(inputList[1]);
@@ -215,11 +261,11 @@ function chanceBottomInfo(input) {
     let container = input.parentNode;
     let childContainer = container.children;
     if (childContainer[1].classList.contains('left-p')) {
-        let getRate = leftValyutData.rates;
-        childContainer[1].innerText = `1 ${leftValyutData.base} = ${getRate[Object.keys(getRate)[0]]} ${Object.keys(getRate)[0]}`;
+        let getRate = leftCurencyData.rates;
+        childContainer[1].innerText = `1 ${leftCurencyData.base} = ${getRate[Object.keys(getRate)[0]]} ${rightCurencyData.base}`;
     } else {
-        let getRate = rightValyutData.rates;
-        childContainer[1].innerText = `1 ${rightValyutData.base} = ${getRate[Object.keys(getRate)[0]]} ${Object.keys(getRate)[0]}`;
+        let getRate = rightCurencyData.rates;
+        childContainer[1].innerText = `1 ${rightCurencyData.base} = ${getRate[Object.keys(getRate)[0]]} ${leftCurencyData.base}`;
     }
 }
 
@@ -228,30 +274,33 @@ function chanceBottomInfo(input) {
 // Функция выпадающяго списка
 function openCurrenciesDiv(e) {
     e.preventDefault();
+    let valyutaListContainer = document.querySelector('.valyuta-list-container');
+
+    let closeCurrenciesDivTime = () => {
+        setTimeout(closeCurrencyesDiv, 50);
+    }
+
+    let closeCurrencyesDiv = () => {
+        valyutaListContainer.classList.remove('hidden');
+        e.target.classList.remove('arrow-active');
+        document.removeEventListener('click', closeCurrenciesDivTime, true);
+    }
+
     if (e.target.classList.contains('arrow-active')) {
         closeCurrenciesDivTime();
         return null;
     }
 
     e.target.classList.add('arrow-active')
-    let valyutaListContainer = document.querySelector('.valyuta-list-container');
     valyutaListContainer.classList.add('hidden');
 
-    let closeValyutasDiv = () => {
-        valyutaListContainer.classList.remove('hidden');
-        e.target.classList.remove('arrow-active');
-        document.removeEventListener('click', closeCurrenciesDivTime, true);
-    }
 
-    let closeCurrenciesDivTime = () => {
-        setTimeout(closeValyutasDiv, 50);
-    }
     document.addEventListener('click', closeCurrenciesDivTime, true);
 }
 
 //=================================================================================
 
-function setListenerForValyutaTypes() {
+function setListenerForCurrencyTypes() {
     let popupValList = document.querySelectorAll('.valyuta-type-div');
 
     popupValList.forEach((valyuta) => {
@@ -273,5 +322,5 @@ function setValToMainList(event) {
         rightList[4].children[0].innerText = type.innerText;
     }
 
-    getValutasData();
+    getCurrencyesData();
 }

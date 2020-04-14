@@ -95,6 +95,11 @@ h1 {
     justify-content: space-between;
 }
 
+.type-container-div img {
+    width: 40px;
+    cursor: pointer;
+}
+
 .spn-color {
     height: 28px;
     font-size: 12px;
@@ -137,9 +142,11 @@ h1 {
 }
 
 .list-type-div li:last-child {
+    display: flex;
+    justify-content: space-between;
     border-right: none;
-    padding-right: 20px;
-    position: relative;
+    flex-grow: 0.5;
+    padding-left: 9px;
 }
 
 /*-----------------------------------------------*/
@@ -248,10 +255,8 @@ h1 {
 }
 
 .select-span {
-    position: absolute;
     background: rgb(90, 118, 148);
     color: white;
-    right: 0;
     width: 20px;
     height: 100%;
     text-align: center;
@@ -336,3 +341,67 @@ footer {
     font-weight: bold;
     font-size: 20px;
 }
+
+/*--------------------------------------------------*/
+
+#chart_div {
+    width: 600px;
+    height: 350px;
+    border-radius: 4px;
+    overflow: hidden;
+    
+}
+
+.chart-background-div {
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.44);
+    width: 100%;
+    height: 100%;
+}
+
+.visible-chart {
+    visibility: visible; 
+}
+
+.list-chart-div ul {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 9999;
+    display: flex;
+    width: 200px;
+}
+
+.list-chart-div li {
+    flex: 33.33%;
+}
+
+.list-chart-div li:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: none;
+    padding-left: 0;
+}
+
+.container-chart {
+    position: relative;
+    background-color: azure;
+    border-radius: 3px;
+}
+
+.list-chart-div li:hover {
+    background: #833AE0;
+    color: whitesmoke;
+}
+
+/* .active-list {
+    background: #833AE0;
+    color: whitesmoke;
+} */

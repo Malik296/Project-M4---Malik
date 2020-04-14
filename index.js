@@ -80,31 +80,27 @@ function getCurrencyesData() {
 // Функция для получения данных с URL
 function updateData(firstUrl, secondUrl) {
 
-    if (arrayCurrency.includes(firstUrl) && arrayCurrency.includes(secondUrl) && !firstStart) {
-        if (firstUrl == arrayCurrency[0]) {
-            leftCurencyData.rates[Object.keys(leftCurencyData.rates)[0]] = 1;
-            rightCurencyData = '';
-            rightCurencyData = leftCurencyData;
-        } else {
-            rightCurencyData.rates[Object.keys(rightCurencyData.rates)[0]] = 1;
-            leftCurencyData = ''
-            leftCurencyData = rightCurencyData;
-        }
-        // leftCurencyData = addDefaultValue(firstUrl);
-        // rightCurencyData = addDefaultValue(firstUrl);
+    // if (arrayCurrency.includes(firstUrl) && arrayCurrency.includes(secondUrl) && !firstStart) {
+    //     if (firstUrl == arrayCurrency[0]) {
+    //         leftCurencyData.rates[Object.keys(leftCurencyData.rates)[0]] = 1;
+    //         rightCurencyData = '';
+    //         rightCurencyData = leftCurencyData;
+    //     } else {
+    //         rightCurencyData.rates[Object.keys(rightCurencyData.rates)[0]] = 1;
+    //         leftCurencyData = ''
+    //         leftCurencyData = rightCurencyData;
+    //     }
 
-        // console.log(le)
+    //     chanceBottomInfo(inputList[0]);
+    //     chanceBottomInfo(inputList[1]);
+    //     setDataToInput(inputList[1], inputList[0].value, leftCurencyData.rates);
+    //     arrayCurrency = [];
+    //     arrayCurrency = [firstUrl, secondUrl];
 
-        chanceBottomInfo(inputList[0]);
-        chanceBottomInfo(inputList[1]);
-        setDataToInput(inputList[1], inputList[0].value, leftCurencyData.rates);
-        arrayCurrency = [];
-        arrayCurrency = [firstUrl, secondUrl];
-
-        return;
-    }
-    firstStart = false;
-    arrayCurrency = [firstUrl, secondUrl];
+    //     return;
+    // }
+    // firstStart = false;
+    // arrayCurrency = [firstUrl, secondUrl];
 
     let urls = [
         `https://api.ratesapi.io/api/latest?base=${firstUrl}&symbols=${secondUrl}`,
@@ -194,7 +190,7 @@ function checkLastTimeClick() {
     let newClick = new Date();
     let rsult = (newClick - lastTimeClick) / 1000;
     console.log(rsult);
-    if ((rsult) > 30) {
+    if ((rsult) > 3) {
         getCurrencyesData();
         lastTimeClick = new Date;
     }
